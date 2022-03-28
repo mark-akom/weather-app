@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bg-color: #f0f0f0;
+    --temp-display-bg: #fafafa;
+    --dark-color: #1a1a1a;
+    --light-dark-color: #4d4d4d;
+}
+
+input,
+button {
+    font-family: inherit;
+}
+
+svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* styling of the page */
+
+body {
+    background-color: var(--bg-color);
+}
+
+.app-container {
+    width: 50%;
+    margin: auto;
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app-container h1 {
+    font-size: 40px;
+    font-weight: 600;
+    padding-bottom: 16px;
+}
+
+form {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+form div input,
+form div button {
+    display: block;
+}
+
+form div:first-child {
+    flex-basis: 55%;
+}
+
+form div input {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 16px;
+    line-height: 1;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #cfcfcf;
+    background-color: var(--temp-display-bg);
+}
+
+form div button {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 4px 12px;
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+.weather-container {
+    margin-top: 32px;
+    padding: 60px 40px;
+    border-radius: 8px;
+    background-color: var(--temp-display-bg);
+    box-shadow: 0 16px 20px 5px rgba(0, 0, 0, 0.2);
+}
+
+.weather-container .place {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    color: var(--dark-color);
+}
+
+.weather-container .temp-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather-container .temp-info img {
+    display: block;
+}
+
+.weather-container .temp-info .temp-value {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1;
+    padding-bottom: 16px;
+    color: var(--dark-color);
+}
+
+.weather-container .temp-info .temp-desc {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--light-dark-color)
+}
+
+.temp-other-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.temp-other-info .temp-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.temp-other-info .temp-card p {
+    padding-top: 12px;
+    font-size: 17px;
+    color: var(--light-dark-color);
+}
+
+.temp-other-info .temp-card p span {
+    font-weight: 500;
+    color: var(--dark-color);
+}
