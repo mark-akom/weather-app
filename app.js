@@ -38,7 +38,7 @@ const weather = (() => {
             errorDisplay.style.display = 'none';
             weatherContainer.style.display = 'none';
             tempToggle.style.display = 'none';
-            const url = `http://api.openweathermap.org/data/2.5/weather?q=${userCity}&APPID=${_API_KEY}`;
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&APPID=${_API_KEY}`;
             const response = await fetch(url, {mode: 'cors'});
             const data = await response.json();
 
@@ -53,6 +53,7 @@ const weather = (() => {
                 errorDisplay.textContent = data.message;
             }
         } catch (error) {
+            loading.style.display = 'none';
             errorDisplay.style.display = 'block';
             errorDisplay.textContent = 'Opps an error occured';
         }
