@@ -8,11 +8,13 @@ const humidityValue = document.querySelector('.hum-value');
 const windValue = document.querySelector('.wind-value');
 const feelsValue = document.querySelector('.feel-value');
 const tempToggle = document.querySelector('.temp-toggle');
-
+const weatherContainer = document.querySelector('.weather-container');
+const loading = document.querySelector('.loading');
+const errorDisplay = document.querySelector('.error');
 
 const weather = (() => {
     const _API_KEY = `6e58b9a04c5a391d7fd4da6259a02c25`;
-    let userCity = 'Accra';
+    let userCity;
     let processedData = {};
     const getCity = (city) => {
         userCity = city;
@@ -31,15 +33,28 @@ const weather = (() => {
     }
 
     const getCurrentForecast =  async () => {
-
         try {
+            loading.style.display = 'block';
+            errorDisplay.style.display = 'none';
+            weatherContainer.style.display = 'none';
+            tempToggle.style.display = 'none';
             const url = `http://api.openweathermap.org/data/2.5/weather?q=${userCity}&APPID=${_API_KEY}`;
             const response = await fetch(url, {mode: 'cors'});
             const data = await response.json();
-            console.log(data);
-            processForecast(data);
+
+            if (data.cod !== '404') {
+                processForecast(data);
+                loading.style.display = 'none';
+                weatherContainer.style.display = 'block';
+                tempToggle.style.display = 'block'
+            } else {
+                loading.style.display = 'none';
+                errorDisplay.style.display = 'block';
+                errorDisplay.textContent = data.message;
+            }
         } catch (error) {
-            console.log(error);
+            errorDisplay.style.display = 'block';
+            errorDisplay.textContent = 'Opps an error occured';
         }
 
     }
@@ -55,7 +70,7 @@ const weather = (() => {
     }
 
     const returnProcessedData = () => {
-        return processedData
+        return processedData;
     }
 
     return {
@@ -77,7 +92,7 @@ function convertTempToFahrenheit({feels_like, temp}) {
     feelsValue.innerHTML = ` ${currentFeels.toFixed(2)} &#8457;`
 }
 
-tempToggle.addEventListener('click', () => {
+tempToggle.addEventListener('click', () => { // temperature toggle button
     const span = tempToggle.firstElementChild
     if(span.className === 'F') {
         span.className = 'C';
@@ -96,7 +111,6 @@ searchButton.addEventListener('click', (e) => {
     const userCity = searchInput.value.trim();
 
     if (userCity.length > 0) {
-        // console.log(userCity);
         weather.getCity(userCity);
         weather.getCurrentForecast();
         searchInput.value = '';

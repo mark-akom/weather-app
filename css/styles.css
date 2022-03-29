@@ -95,6 +95,7 @@ form div button,
     border-radius: 8px;
     background-color: var(--temp-display-bg);
     box-shadow: 0 16px 20px 5px rgba(0, 0, 0, 0.2);
+    display: none;
 }
 
 .weather-container .place {
@@ -156,4 +157,24 @@ form div button,
 
 .temp-toggle {
     margin-top: 32px;
+    display: none;
+}
+
+.loading {
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 56px;
+    display: none;
+}
+
+.error {
+    width: 70%;
+    padding: 40px 0;
+    font-size: 24px;
+    font-weight: 500;
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+    margin-top: 56px;
+    display: none;
 }
